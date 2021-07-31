@@ -1,0 +1,283 @@
+<html>
+
+<head>
+    <!-- Metadata -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Website for gender prediction">
+    <meta name="keywords" content="Gender prediction(KNN)">
+    <meta name="author" content="Dhruvin Modi">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- jQuery for bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12" style="text-align: center;padding: 20px;">
+                <h1>Gender prediction (KNN)</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10">
+
+                <form id="form">
+                    <div class="form-group">
+                        <div class="row">
+                            <legend class="col-form-label col-sm-2 pt-0">Favorite Color</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_color" id="0-0" value="0"
+                                        checked>
+                                    <label class="form-check-label" for="0-0">
+                                        Cool
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_color" id="0-1"
+                                        value="1">
+                                    <label class="form-check-label" for="0-1">
+                                        Neutral
+                                    </label>
+                                </div>
+                                <div class="form-check ">
+                                    <input class="form-check-input" type="radio" name="fav_color" id="0-2" value="2">
+                                    <label class="form-check-label" for="0-2">
+                                        Warm
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <legend class="col-form-label col-sm-2 pt-0">Favorite Music Genre</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_music" id="1-1"
+                                        value="1" checked>
+                                    <label class="form-check-label" for="1-1">
+                                        Folk/Traditional
+                                    </label>
+                                </div>
+                                <div class="form-check ">
+                                    <input class="form-check-input" type="radio" name="fav_music" id="1-2"
+                                        value="2">
+                                    <label class="form-check-label" for="1-2">
+                                        Hip hop
+                                    </label>
+                                </div>
+                                <div class="form-check ">
+                                    <input class="form-check-input" type="radio" name="fav_music" id="1-5"
+                                        value="5">
+                                    <label class="form-check-label" for="1-5">
+                                        R&B and soul
+                                    </label>
+                                </div>
+                                <div class="form-check ">
+                                    <input class="form-check-input" type="radio" name="fav_music" id="1-4" value="4">
+                                    <label class="form-check-label" for="1-4">
+                                        Pop
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_music" id="1-0"
+                                        value="0">
+                                    <label class="form-check-label" for="1-0">
+                                        Electronic
+                                    </label>
+                                </div>
+                                <div class="form-check ">
+                                    <input class="form-check-input" type="radio" name="fav_music" id="1-3"
+                                        value="3">
+                                    <label class="form-check-label" for="1-3">
+                                        Jazz/Blues
+                                    </label>
+                                </div>
+                                <div class="form-check ">
+                                    <input class="form-check-input" type="radio" name="fav_music" id="1-6" value="6">
+                                    <label class="form-check-label" for="1-6">
+                                        Rock
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <fieldset class="form-group">
+                        <div class="row">
+                            <legend class="col-form-label col-sm-2 pt-0">Favorite Beverage</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_bev" id="2-0" value="0"
+                                        checked>
+                                    <label class="form-check-label" for="2-0">
+                                        Beer
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_bev" id="2-3" value="3">
+                                    <label class="form-check-label" for="2-3">
+                                        Vodka
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_bev" id="2-4"
+                                        value="4">
+                                    <label class="form-check-label" for="2-4">
+                                        Whiskey
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_bev" id="2-5" value="5">
+                                    <label class="form-check-label" for="2-5">
+                                        Wine
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_bev" id="2-2" value="2">
+                                    <label class="form-check-label" for="2-2">
+                                        Other
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_bev" id="2-1"
+                                        value="1">
+                                    <label class="form-check-label" for="2-1">
+                                        Doesn't drink
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="form-group">
+                        <div class="row">
+                            <legend class="col-form-label col-sm-2 pt-0">Favorite Soft Drink</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_drink" id="3-0"
+                                        value="0" checked>
+                                    <label class="form-check-label" for="3-0">
+                                        7UP/Sprite
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_drink" id="3-1"
+                                        value="1">
+                                    <label class="form-check-label" for="3-1">
+                                        Coca Cola/Pepsi
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_drink" id="3-2"
+                                        value="2">
+                                    <label class="form-check-label" for="3-2">
+                                        Fanta
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_drink" id="3-3"
+                                        value="3">
+                                    <label class="form-check-label" for="3-3">
+                                        Other
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <div type="submit" class="btn btn-primary" onclick="predict_gender()" data-toggle="modal"
+                                data-target="#exampleModal">Predict</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Prediction</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="popup-content" class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let x_train = [[0, 0, 0, 1], [0, 4, 5, 0], [0, 0, 2, 2], [1, 6, 1, 1], [2, 0, 5, 1], [2, 6, 2, 1], [0, 6, 1, 1], [0, 5, 0, 1], [2, 3, 5, 1], [0, 0, 1, 2], [0, 6, 3, 1], [1, 6, 0, 1], [1, 2, 3, 1], [2, 0, 3, 2], [0, 4, 1, 0], [0, 4, 0, 3], [2, 3, 4, 2], [0, 0, 1, 2], [2, 4, 2, 1], [0, 2, 0, 1], [0, 4, 1, 1], [0, 6, 5, 0], [0, 6, 3, 0], [0, 6, 1, 3], [0, 1, 0, 3], [2, 3, 3, 1], [0, 5, 1, 1], [0, 6, 3, 1], [2, 6, 2, 0], [0, 5, 4, 0], [0, 2, 5, 1], [0, 6, 0, 1], [2, 5, 4, 1], [2, 6, 0, 2], [0, 4, 2, 2], [2, 6, 3, 0], [0, 6, 2, 1], [2, 4, 4, 2], [0, 2, 0, 1], [1, 4, 5, 1], [2, 2, 0, 1], [2, 3, 1, 2], [2, 5, 5, 3], [2, 4, 2, 0], [2, 4, 5, 0], [2, 6, 5, 1], [2, 5, 1, 1], [2, 0, 2, 1], [0, 1, 4, 0], [0, 0, 4, 1], [0, 2, 1, 3], [0, 4, 0, 1], [0, 4, 2, 0], [1, 2, 0, 0], [0, 6, 2, 1], [0, 4, 1, 3], [0, 6, 3, 1], [0, 4, 4, 3], [0, 4, 4, 2], [2, 1, 4, 2], [2, 1, 2, 2], [0, 6, 3, 1], [0, 6, 5, 1], [1, 4, 1, 0], [1, 2, 1, 2], [0, 4, 0, 2]];
+        let y_train = [1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0]
+        function predict_gender() {
+            let form = document.getElementById('form');
+            let f_c = parseInt(form['fav_color'].value);
+            let f_s = parseInt(form['fav_music'].value);
+            let f_b = parseInt(form['fav_bev'].value);
+            let f_d = parseInt(form['fav_drink'].value);
+
+            let gender = predict([f_c, f_s, f_b, f_d], x_train, y_train, 7);
+
+            let ele = document.getElementById('popup-content')
+
+            if (gender == 'M') {
+                ele.innerHTML = `<p>Your choices are similar to Male.</p>`
+            } else {
+                ele.innerHTML = `<p>Your choices are similar to Female</p>`
+            }
+        }
+        function get_distances_label(input_param, x, y, k){
+
+            let distances = [];
+            let label = [];
+            let used_index = []
+            for (let i = 0; i < k; i += 1){
+
+                let min_distance = null
+                let min_index = 0
+                for (let j = 0; j < x.length; j += 1){
+
+                    if(j in used_index)continue;
+                    let distance = 0;
+                    for (let l = 0; l < input_param.length; l += 1){
+
+                        distance += Math.pow(x[j][l] - input_param[l], 2)
+                    }
+                    distance = Math.sqrt(distance)
+                    if(min_distance == null || min_distance > distance){
+
+                        min_distance = distance;
+                        min_index = j;
+                    }
+                }
+                used_index.push(min_index)
+                distances.push(min_distance)
+                label.push(y[used_index[used_index.length - 1]])
+            }
+            return {"dist": distances,"label": label}
+        }
+        function predict(input_param, x, y, k){
+
+            obj = get_distances_label(input_param, x, y, k);
+
+            if (obj.label.reduce((a, b) => a + b) > k / 2) 
+                return 'M'
+            else
+                return 'F'
+        }
+    </script>
+</body>
+
+</html>

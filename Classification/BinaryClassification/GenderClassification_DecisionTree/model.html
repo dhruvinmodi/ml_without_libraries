@@ -1,0 +1,390 @@
+<html>
+
+<head>
+    <!-- Metadata -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Website for gender prediction">
+    <meta name="keywords" content="Gender prediction(Naive Bayes)">
+    <meta name="author" content="Dhruvin Modi">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- jQuery for bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12" style="text-align: center;padding: 20px;">
+                <h1>Gender prediction (Naive Bayes)</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10">
+
+                <form id="form">
+                    <div class="form-group">
+                        <div class="row">
+                            <legend class="col-form-label col-sm-2 pt-0">Favorite Color</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_color" id="0-0" value="Cool"
+                                        checked>
+                                    <label class="form-check-label" for="0-0">
+                                        Cool
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_color" id="0-1"
+                                        value="Neutral">
+                                    <label class="form-check-label" for="0-1">
+                                        Neutral
+                                    </label>
+                                </div>
+                                <div class="form-check ">
+                                    <input class="form-check-input" type="radio" name="fav_color" id="0-2" value="Warm">
+                                    <label class="form-check-label" for="0-2">
+                                        Warm
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <legend class="col-form-label col-sm-2 pt-0">Favorite Music Genre</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_music" id="1-1"
+                                        value="Folk/Traditional" checked>
+                                    <label class="form-check-label" for="1-1">
+                                        Folk/Traditional
+                                    </label>
+                                </div>
+                                <div class="form-check ">
+                                    <input class="form-check-input" type="radio" name="fav_music" id="1-2"
+                                        value="Hip hop">
+                                    <label class="form-check-label" for="1-2">
+                                        Hip hop
+                                    </label>
+                                </div>
+                                <div class="form-check ">
+                                    <input class="form-check-input" type="radio" name="fav_music" id="1-5"
+                                        value="R&B and soul">
+                                    <label class="form-check-label" for="1-5">
+                                        R&B and soul
+                                    </label>
+                                </div>
+                                <div class="form-check ">
+                                    <input class="form-check-input" type="radio" name="fav_music" id="1-4" value="Pop">
+                                    <label class="form-check-label" for="1-4">
+                                        Pop
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_music" id="1-0"
+                                        value="Electronic">
+                                    <label class="form-check-label" for="1-0">
+                                        Electronic
+                                    </label>
+                                </div>
+                                <div class="form-check ">
+                                    <input class="form-check-input" type="radio" name="fav_music" id="1-3"
+                                        value="Jazz/Blues">
+                                    <label class="form-check-label" for="1-3">
+                                        Jazz/Blues
+                                    </label>
+                                </div>
+                                <div class="form-check ">
+                                    <input class="form-check-input" type="radio" name="fav_music" id="1-6" value="Rock">
+                                    <label class="form-check-label" for="1-6">
+                                        Rock
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <fieldset class="form-group">
+                        <div class="row">
+                            <legend class="col-form-label col-sm-2 pt-0">Favorite Beverage</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_bev" id="2-0" value="Beer"
+                                        checked>
+                                    <label class="form-check-label" for="2-0">
+                                        Beer
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_bev" id="2-3" value="Vodka">
+                                    <label class="form-check-label" for="2-3">
+                                        Vodka
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_bev" id="2-4"
+                                        value="Whiskey">
+                                    <label class="form-check-label" for="2-4">
+                                        Whiskey
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_bev" id="2-5" value="Wine">
+                                    <label class="form-check-label" for="2-5">
+                                        Wine
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_bev" id="2-2" value="Other">
+                                    <label class="form-check-label" for="2-2">
+                                        Other
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_bev" id="2-1"
+                                        value="Doesn't drink">
+                                    <label class="form-check-label" for="2-1">
+                                        Doesn't drink
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="form-group">
+                        <div class="row">
+                            <legend class="col-form-label col-sm-2 pt-0">Favorite Soft Drink</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_drink" id="3-0"
+                                        value="7UP/Sprite" checked>
+                                    <label class="form-check-label" for="3-0">
+                                        7UP/Sprite
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_drink" id="3-1"
+                                        value="Coca Cola/Pepsi">
+                                    <label class="form-check-label" for="3-1">
+                                        Coca Cola/Pepsi
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_drink" id="3-2"
+                                        value="Fanta">
+                                    <label class="form-check-label" for="3-2">
+                                        Fanta
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fav_drink" id="3-3"
+                                        value="Other">
+                                    <label class="form-check-label" for="3-3">
+                                        Other
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <div type="submit" class="btn btn-primary" onclick="predict()" data-toggle="modal"
+                                data-target="#exampleModal">Predict</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Prediction</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="popup-content" class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let conditional_p = {
+            'Favorite Beverage': {
+                'Beer': {
+                    'F': 6,
+                    'M': 7,
+                    'p( Beer | F)': 0.18181818181818182,
+                    'p( Beer | M)': 0.21212121212121213
+                },
+                "Doesn't drink": {
+                    'F': 5,
+                    'M': 9,
+                    "p( Doesn't drink | F)": 0.15151515151515152,
+                    "p( Doesn't drink | M)": 0.2727272727272727
+                },
+                'Other': {
+                    'F': 7,
+                    'M': 4,
+                    'p( Other | F)': 0.21212121212121213,
+                    'p( Other | M)': 0.12121212121212122
+                },
+                'Vodka': {
+                    'F': 4,
+                    'M': 5,
+                    'p( Vodka | F)': 0.12121212121212122,
+                    'p( Vodka | M)': 0.15151515151515152
+                },
+                'Whiskey': {
+                    'F': 5,
+                    'M': 4,
+                    'p( Whiskey | F)': 0.15151515151515152,
+                    'p( Whiskey | M)': 0.12121212121212122
+                },
+                'Wine': {
+                    'F': 6,
+                    'M': 4,
+                    'p( Wine | F)': 0.18181818181818182,
+                    'p( Wine | M)': 0.12121212121212122
+                }
+            },
+            'Favorite Color': {
+                'Cool': {
+                    'F': 17,
+                    'M': 20,
+                    'p( Cool | F)': 0.5151515151515151,
+                    'p( Cool | M)': 0.6060606060606061
+                },
+                'Neutral': {
+                    'F': 3,
+                    'M': 4,
+                    'p( Neutral | F)': 0.09090909090909091,
+                    'p( Neutral | M)': 0.12121212121212122
+                },
+                'Warm': {
+                    'F': 13,
+                    'M': 9,
+                    'p( Warm | F)': 0.3939393939393939,
+                    'p( Warm | M)': 0.2727272727272727
+                }
+            },
+            'Favorite Music Genre': {
+                'Electronic': {
+                    'F': 2,
+                    'M': 6,
+                    'p( Electronic | F)': 0.06060606060606061,
+                    'p( Electronic | M)': 0.18181818181818182
+                },
+                'Folk/Traditional': {
+                    'F': 2,
+                    'M': 2,
+                    'p( Folk/Traditional | F)': 0.06060606060606061,
+                    'p( Folk/Traditional | M)': 0.06060606060606061
+                },
+                'Hip hop': {
+                    'F': 1,
+                    'M': 7,
+                    'p( Hip hop | F)': 0.030303030303030304,
+                    'p( Hip hop | M)': 0.21212121212121213
+                },
+                'Jazz/Blues': {
+                    'F': 3,
+                    'M': 1,
+                    'p( Jazz/Blues | F)': 0.09090909090909091,
+                    'p( Jazz/Blues | M)': 0.030303030303030304
+                },
+                'Pop': {
+                    'F': 13,
+                    'M': 4,
+                    'p( Pop | F)': 0.3939393939393939,
+                    'p( Pop | M)': 0.12121212121212122
+                },
+                'R&B and soul': {
+                    'F': 2,
+                    'M': 4,
+                    'p( R&B and soul | F)': 0.06060606060606061,
+                    'p( R&B and soul | M)': 0.12121212121212122
+                },
+                'Rock': {
+                    'F': 10,
+                    'M': 9,
+                    'p( Rock | F)': 0.30303030303030304,
+                    'p( Rock | M)': 0.2727272727272727
+                }
+            },
+            'Favorite Soft Drink': {
+                '7UP/Sprite': {
+                    'F': 8,
+                    'M': 5,
+                    'p( 7UP/Sprite | F)': 0.24242424242424243,
+                    'p( 7UP/Sprite | M)': 0.15151515151515152
+                },
+                'Coca Cola/Pepsi': {
+                    'F': 17,
+                    'M': 15,
+                    'p( Coca Cola/Pepsi | F)': 0.5151515151515151,
+                    'p( Coca Cola/Pepsi | M)': 0.45454545454545453
+                },
+                'Fanta': {
+                    'F': 6,
+                    'M': 8,
+                    'p( Fanta | F)': 0.18181818181818182,
+                    'p( Fanta | M)': 0.24242424242424243
+                },
+                'Other': {
+                    'F': 2,
+                    'M': 5,
+                    'p( Other | F)': 0.06060606060606061,
+                    'p( Other | M)': 0.15151515151515152
+                }
+            },
+            'Gender': {
+                'F': { 'F': 33, 'M': 0, 'p( F | F)': 1.0, 'p( F | M)': 0.0 },
+                'M': { 'F': 0, 'M': 33, 'p( M | F)': 0.0, 'p( M | M)': 1.0 }
+            }
+        }
+        let m_p = 0.5, f_p = 0.5;
+        function predict() {
+            let form = document.getElementById('form');
+            let f_c = form['fav_color'].value;
+            let f_s = form['fav_music'].value;
+            let f_b= form['fav_bev'].value;
+            let f_d = form['fav_drink'].value;
+
+            cp_f_c_m = conditional_p['Favorite Color'][f_c]['p( ' + f_c + ' | M)']
+            cp_f_s_m = conditional_p['Favorite Music Genre'][f_s]['p( ' + f_s + ' | M)']
+            cp_f_b_m = conditional_p['Favorite Beverage'][f_b]['p( ' + f_b + ' | M)']
+            cp_f_d_m = conditional_p['Favorite Soft Drink'][f_d]['p( ' + f_d + ' | M)']
+
+            cp_f_c_f = conditional_p['Favorite Color'][f_c]['p( ' + f_c + ' | F)']
+            cp_f_s_f = conditional_p['Favorite Music Genre'][f_s]['p( ' + f_s + ' | F)']
+            cp_f_b_f = conditional_p['Favorite Beverage'][f_b]['p( ' + f_b + ' | F)']
+            cp_f_d_f = conditional_p['Favorite Soft Drink'][f_d]['p( ' + f_d + ' | F)']
+
+            p_t = (cp_f_c_m * cp_f_s_m * cp_f_b_m * cp_f_d_m * m_p) + (cp_f_c_f * cp_f_s_f * cp_f_b_f * cp_f_d_f * f_p)
+
+            p_m = Math.round(((cp_f_c_m * cp_f_s_m * cp_f_b_m * cp_f_d_m * m_p) / p_t) * 100)
+            p_f = (cp_f_c_f * cp_f_s_f * cp_f_b_f * cp_f_d_f * f_p) / p_t
+
+            let ele = document.getElementById('popup-content')
+
+            if (p_m > 50) {
+                ele.innerHTML = `<p>You have ${p_m}% interest similar to Male and ${100 - p_m}% interest similar to Female</p>`
+            } else {
+                ele.innerHTML = `<p>You have ${100 - p_m}% interest similar to Female and ${p_m}% interest similar to Male</p>`
+            }
+        }
+    </script>
+</body>
+
+</html>
